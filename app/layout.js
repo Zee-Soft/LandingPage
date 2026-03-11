@@ -97,14 +97,36 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "Z-Soft — Senior Engineers, On Demand",
+  metadataBase: new URL("https://z-soft.dev"),
+  title: {
+    default: "Z-Soft — Senior Engineers, On Demand",
+    template: "%s | Z-Soft",
+  },
   description:
-    "Z-Soft embeds senior engineers directly into your team — shipping production code from week one. Technical contracting, done right.",
+    "Z-Soft embeds senior engineers directly into your team — shipping production code from week one. Technical contracting for startups, scale-ups, and enterprise.",
+  keywords: [
+    "software engineering",
+    "contract engineers",
+    "senior developers",
+    "staff augmentation",
+    "technical contracting",
+    "freelance engineers",
+    "React",
+    "Node.js",
+    "Go",
+    "Kubernetes",
+    "cloud infrastructure",
+    "Z-Soft",
+  ],
+  authors: [{ name: "Z-Soft" }],
+  creator: "Z-Soft",
   openGraph: {
     title: "Z-Soft — Senior Engineers, On Demand",
     description:
       "Z-Soft embeds senior engineers directly into your team — shipping production code from week one.",
+    url: "https://z-soft.dev",
     siteName: "Z-Soft",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -112,6 +134,20 @@ export const metadata = {
     title: "Z-Soft — Senior Engineers, On Demand",
     description:
       "Z-Soft embeds senior engineers directly into your team — shipping production code from week one.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://z-soft.dev",
   },
 };
 
