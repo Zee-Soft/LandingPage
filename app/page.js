@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Features from "./components/Features";
 import Services from "./components/Services";
 import Protocol from "./components/Protocol";
 import Clients from "./components/Clients";
@@ -58,8 +57,6 @@ export default function Home() {
         <Services />
         <TerminalDivider />
         <Protocol />
-        <TerminalDivider />
-        <Features />
         <TerminalDivider />
         <Clients />
         <TerminalDivider />

@@ -115,7 +115,7 @@ export default function Hero() {
 
   const bootSequence = useRef([
     {
-      text: "Z-SOFT SYSTEMS v4.2.0 — Engineering Solutions",
+      text: "Z-SOFT SYSTEMS v4.2.0 — Software Engineering, On Demand",
       cls: "text-ivory/50",
       delay: 400,
     },
@@ -157,18 +157,32 @@ export default function Hero() {
     },
     { text: "", delay: 2000 },
     {
-      text: "All systems operational. Welcome to Z-Soft.",
+      text: "All systems operational. Ready to build.",
       cls: "text-champagne font-bold",
       delay: 2100,
     },
     { text: "", delay: 2300 },
   ]).current;
 
+  const timeoutsRef = useRef([]);
+  const logoTimeoutsRef = useRef([]);
+
+  const skipBoot = () => {
+    logoTimeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current.forEach(clearTimeout);
+    setLogoLines(asciiLogo.length);
+    setBootLines(bootSequence.map((l) => l));
+    setTypedCmd(cmdText);
+    setShowCursor(false);
+    setShowMain(true);
+  };
+
   useEffect(() => {
     // Animate logo lines first
     const logoTimeouts = asciiLogo.map((_, i) =>
       setTimeout(() => setLogoLines(i + 1), i * 60),
     );
+    logoTimeoutsRef.current = logoTimeouts;
 
     const timeouts = [];
     bootSequence.forEach((line, i) => {
@@ -194,6 +208,7 @@ export default function Hero() {
       }, line.delay);
       timeouts.push(t);
     });
+    timeoutsRef.current = timeouts;
     return () => {
       logoTimeouts.forEach(clearTimeout);
       timeouts.forEach(clearTimeout);
@@ -269,6 +284,14 @@ export default function Hero() {
             <span className="ml-auto font-mono text-[10px] text-ivory/15">
               bash
             </span>
+            {!showMain && (
+              <button
+                onClick={skipBoot}
+                className="ml-3 font-mono text-[10px] text-champagne/40 hover:text-champagne/80 transition-colors cursor-pointer"
+              >
+                skip ▸
+              </button>
+            )}
           </div>
 
           {/* Terminal body */}
@@ -317,20 +340,23 @@ export default function Hero() {
         {/* Main content — appears after boot */}
         {showMain && (
           <div className="mt-10">
-            <div aria-hidden="true" className="font-mono mb-6">
+            <div aria-hidden="true" className="font-mono mb-4">
               <span className="hero-title-1 block text-3xl md:text-5xl lg:text-6xl font-bold text-ivory leading-[1.1] tracking-tight">
-                Your product,
+                Senior Engineers,
               </span>
               <span className="hero-title-2 block text-4xl md:text-6xl lg:text-7xl font-bold text-champagne text-glow leading-[1.1] tracking-tight mt-2">
-                shipped.
+                On Demand.
                 <span className="cursor-blink">_</span>
               </span>
             </div>
 
-            <p className="hero-desc font-mono text-[13px] md:text-[14px] leading-relaxed text-ivory/45 mb-10 max-w-xl">
-              Stop burning runway on products that never launch. Z-Soft takes
-              your vision from concept to production — real software, real
-              users, real revenue.
+            <p className="hero-desc font-mono text-[14px] md:text-[16px] leading-relaxed text-ivory/60 mb-3 max-w-xl">
+              We embed into your team and ship production software — from week
+              one.
+            </p>
+            <p className="hero-desc font-mono text-[12px] md:text-[13px] leading-relaxed text-ivory/45 mb-10 max-w-xl">
+              Full-stack, infrastructure, firmware, trading systems — whatever
+              you need built, we build it.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -338,13 +364,13 @@ export default function Hero() {
                 href="#contact"
                 className="hero-btn glow-pulse inline-flex items-center gap-2 px-6 py-3 font-mono text-[13px] font-bold bg-champagne text-obsidian hover:bg-champagne-light transition-colors duration-200"
               >
-                $ start_project --now
+                Start a Project
               </a>
               <a
                 href="#services"
                 className="hero-btn inline-flex items-center gap-2 px-6 py-3 font-mono text-[13px] border border-champagne/25 text-champagne/70 hover:border-champagne/60 hover:text-champagne transition-all duration-200"
               >
-                $ man z-soft
+                See What We Do
               </a>
             </div>
 

@@ -171,7 +171,7 @@ export default function Clients() {
                     {client.name}
                   </span>
                 </div>
-                <span className="font-mono text-[10px] text-ivory/25 truncate hidden md:block">
+                <span className="font-mono text-[10px] text-ivory/35 truncate hidden md:block">
                   {client.industry}
                 </span>
                 <StatusBadge value={client.status} />
@@ -196,7 +196,7 @@ export default function Clients() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-ivory/10" />
-                  <span className="font-mono text-[10px] text-ivory/15 tracking-wider">
+                  <span className="font-mono text-[10px] text-ivory/25 tracking-wider">
                     NDA
                   </span>
                 </div>
@@ -204,7 +204,7 @@ export default function Clients() {
             ))}
 
             {/* More indicator */}
-            <div className="px-4 py-2 text-center font-mono text-[10px] text-ivory/15 border-b border-ivory/[0.03]">
+            <div className="px-4 py-2 text-center font-mono text-[10px] text-ivory/25 border-b border-ivory/[0.03]">
               + 5 additional engagements under NDA
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function Clients() {
               <div className="p-5 border-t border-champagne/10 bg-slate-dark/20 scan-line relative">
                 <div className="flex items-start gap-4">
                   <div className="flex-1">
-                    <div className="font-mono text-[10px] text-ivory/15 mb-2">
+                    <div className="font-mono text-[10px] text-ivory/25 mb-2">
                       ENGAGEMENT LOG:
                     </div>
                     <p className="font-mono text-[12px] leading-relaxed text-ivory/40">
@@ -232,7 +232,7 @@ export default function Clients() {
                       <span className="w-2 h-2 rounded-full bg-champagne animate-pulse" />
                       {active.status}
                     </div>
-                    <div className="font-mono text-[9px] text-ivory/20 mt-1">
+                    <div className="font-mono text-[9px] text-ivory/30 mt-1">
                       engagement status
                     </div>
                   </div>
@@ -242,7 +242,7 @@ export default function Clients() {
           </div>
 
           {/* Status bar */}
-          <div className="flex items-center justify-between px-4 py-1.5 border-t border-champagne/5 bg-slate-dark/30 font-mono text-[10px] text-ivory/20">
+          <div className="flex items-center justify-between px-4 py-1.5 border-t border-champagne/5 bg-slate-dark/30 font-mono text-[10px] text-ivory/30">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse" />

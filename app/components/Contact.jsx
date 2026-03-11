@@ -39,7 +39,7 @@ function TerminalPrompt() {
                 ? "text-champagne"
                 : line.type === "prompt"
                   ? "text-champagne text-glow-subtle font-bold mt-2"
-                  : "text-ivory/20"
+                  : "text-ivory/30"
           }
         >
           {line.text}
@@ -111,7 +111,7 @@ export default function Contact() {
               <span className="cursor-blink">_</span>
             </h2>
 
-            <p className="font-mono text-[13px] leading-relaxed text-ivory/40 max-w-xl mx-auto mb-10">
+            <p className="font-mono text-[13px] leading-relaxed text-ivory/50 max-w-xl mx-auto mb-10">
               Tell us what you&apos;re building, where you&apos;re stuck, and
               when it needs to be live. We&apos;ll tell you exactly how
               we&apos;d build it and when it ships.
@@ -138,4 +138,3 @@ export default function Contact() {
     </section>
   );
 }
-

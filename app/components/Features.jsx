@@ -51,7 +51,7 @@ function TelemetryFeed() {
         </span>
       </div>
       {lines.map((line, i) => (
-        <div key={`${lineIndex}-${i}`} className="text-ivory/25">
+        <div key={`${lineIndex}-${i}`} className="text-ivory/35">
           <span className="text-champagne/30 mr-2">│</span>
           {line}
         </div>
@@ -106,7 +106,7 @@ function ProcessQueue() {
           className={`relative flex items-center gap-3 px-3 py-1.5 border transition-all duration-700 overflow-hidden ${
             pos === 0
               ? "border-champagne/30 text-champagne"
-              : "border-ivory/5 text-ivory/25"
+              : "border-ivory/5 text-ivory/35"
           }`}
         >
           {pos === 0 && (
@@ -161,7 +161,7 @@ function DeploySimulation() {
                 ? "text-champagne/70"
                 : s.type === "cmd"
                   ? "text-ivory/60"
-                  : "text-ivory/30"
+                  : "text-ivory/40"
           }
         >
           {s.cmd}
@@ -259,7 +259,7 @@ export default function Features() {
                 className={`px-5 py-3 font-mono text-[11px] border-r border-champagne/5 transition-all duration-200 shrink-0 ${
                   i === activeTab
                     ? "text-champagne bg-obsidian/80 border-b-2 border-b-champagne"
-                    : "text-ivory/30 hover:text-ivory/50 hover:bg-slate-dark/30"
+                    : "text-ivory/40 hover:text-ivory/60 hover:bg-slate-dark/30"
                 }`}
               >
                 {i === activeTab && <span className="mr-1">●</span>}
@@ -276,7 +276,7 @@ export default function Features() {
           <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[320px]">
             {/* Left: Description */}
             <div className="p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-champagne/5">
-              <div className="font-mono text-[10px] text-ivory/20 mb-4">
+              <div className="font-mono text-[10px] text-ivory/30 mb-4">
                 # {tabs[activeTab].label} — included in every engagement
               </div>
               <h3 className="font-mono text-xl md:text-2xl font-bold text-ivory mb-4">
@@ -289,7 +289,7 @@ export default function Features() {
                 <span className="px-3 py-1 font-mono text-[10px] border border-champagne/20 text-champagne/50">
                   production-ready
                 </span>
-                <span className="px-3 py-1 font-mono text-[10px] border border-ivory/10 text-ivory/25">
+                <span className="px-3 py-1 font-mono text-[10px] border border-ivory/10 text-ivory/35">
                   delivered
                 </span>
               </div>
@@ -320,4 +320,3 @@ export default function Features() {
     </section>
   );
 }
-

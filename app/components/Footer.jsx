@@ -59,7 +59,7 @@ export default function Footer() {
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}
-                  className="font-mono text-[12px] text-ivory/30 hover:text-champagne transition-colors duration-300 group"
+                  className="font-mono text-[12px] text-ivory/40 hover:text-champagne transition-colors duration-300 group"
                 >
                   <span className="text-champagne/30 mr-1 group-hover:text-champagne transition-colors">
                     $
@@ -78,13 +78,13 @@ export default function Footer() {
             <div className="flex flex-col gap-2">
               <a
                 href="tel:5862229099"
-                className="font-mono text-[12px] text-ivory/30 hover:text-champagne transition-colors duration-300"
+                className="font-mono text-[12px] text-ivory/40 hover:text-champagne transition-colors duration-300"
               >
                 tel://586-222-9099
               </a>
               <a
                 href="mailto:info@z-soft.dev"
-                className="font-mono text-[12px] text-ivory/30 hover:text-champagne transition-colors duration-300"
+                className="font-mono text-[12px] text-ivory/40 hover:text-champagne transition-colors duration-300"
               >
                 mailto://info@z-soft.dev
               </a>
@@ -96,7 +96,7 @@ export default function Footer() {
       {/* Terminal status bar */}
       <div className="border-t border-champagne/5 bg-obsidian/50">
         <div className="max-w-6xl mx-auto px-6 md:px-16 lg:px-24 py-3 flex flex-col md:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-4 font-mono text-[10px] text-ivory/20">
+          <div className="flex items-center gap-4 font-mono text-[10px] text-ivory/30">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               all systems operational
@@ -109,7 +109,7 @@ export default function Footer() {
             <span className="hidden md:inline">pid: 1</span>
           </div>
 
-          <p className="font-mono text-[10px] text-ivory/15">
+          <p className="font-mono text-[10px] text-ivory/25">
             &copy; 2020–{new Date().getFullYear()} Z-Soft — exit code: 0
           </p>
         </div>
@@ -117,4 +117,3 @@ export default function Footer() {
     </footer>
   );
 }
-

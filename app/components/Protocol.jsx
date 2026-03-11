@@ -74,22 +74,19 @@ const steps = [
   },
 ];
 
-function StepCard({ step, index, isActive, progress }) {
+function StepCard({
+  step,
+  index,
+  isActive,
+  progress,
+  paused,
+  onContinue,
+  animKey,
+}) {
   return (
     <div
-      className={`protocol-step relative transition-all duration-500 ${isActive ? "z-10" : ""}`}
+      className={`protocol-step group relative transition-all duration-500 ${isActive ? "z-10" : ""}`}
     >
-      {/* Connector line */}
-      {index < steps.length - 1 && (
-        <div className="hidden md:block absolute left-1/2 top-full w-px h-8 -translate-x-1/2 z-0 overflow-hidden">
-          <div
-            className="w-full bg-champagne/40 transition-all duration-700"
-            style={{ height: isActive ? "100%" : "0%" }}
-          />
-          <div className="w-full h-full bg-ivory/5" />
-        </div>
-      )}
-
       <div
         className={`border transition-all duration-500 ${
           isActive
@@ -107,7 +104,7 @@ function StepCard({ step, index, isActive, progress }) {
         >
           <span
             className={`font-mono text-[20px] font-bold transition-colors duration-300 ${
-              isActive ? "text-champagne text-glow-subtle" : "text-ivory/10"
+              isActive ? "text-champagne text-glow-subtle" : "text-ivory/20"
             }`}
           >
             {step.number}
@@ -118,7 +115,7 @@ function StepCard({ step, index, isActive, progress }) {
             </div>
             <h3
               className={`font-mono text-[14px] font-bold transition-colors duration-300 ${
-                isActive ? "text-ivory" : "text-ivory/30"
+                isActive ? "text-ivory" : "text-ivory/40"
               }`}
             >
               {step.title}
@@ -130,7 +127,7 @@ function StepCard({ step, index, isActive, progress }) {
                 ? "border-champagne/30 text-champagne"
                 : progress > index
                   ? "border-champagne/10 text-champagne/40"
-                  : "border-ivory/5 text-ivory/15"
+                  : "border-ivory/5 text-ivory/25"
             }`}
           >
             {isActive ? "RUNNING" : progress > index ? "DONE" : "PENDING"}
@@ -145,28 +142,40 @@ function StepCard({ step, index, isActive, progress }) {
         >
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-5 border-b md:border-b-0 md:border-r border-ivory/5">
-              <p className="font-mono text-[11px] leading-relaxed text-ivory/40">
+              <p className="font-mono text-[11px] leading-relaxed text-ivory/50">
                 {step.description}
               </p>
             </div>
             <div className="p-5 bg-slate-dark/20 font-mono text-[10px]">
-              <div className="text-ivory/15 mb-2">OUTPUT:</div>
+              <div className="text-ivory/25 mb-2">OUTPUT:</div>
               {step.output.map((line, i) => (
                 <div
                   key={i}
                   className={`leading-5 ${
-                    line.startsWith("✓") ? "text-champagne" : "text-ivory/25"
+                    line.startsWith("✓") ? "text-champagne" : "text-ivory/35"
                   }`}
                 >
                   {line}
                 </div>
               ))}
               {/* Progress bar */}
-              <div className="mt-3 h-1 bg-ivory/5 overflow-hidden">
-                <div
-                  className="h-full bg-champagne/60 animate-[progress-fill_2s_ease-in-out_infinite]"
-                  style={{ width: "100%" }}
-                />
+              <div className="flex items-center gap-3 mt-3">
+                <div className="flex-1 h-1 bg-ivory/5 overflow-hidden">
+                  <div
+                    key={animKey}
+                    className={`h-full bg-champagne/60 ${paused ? "" : "animate-[progress-fill_4s_ease-in-out_forwards]"}`}
+                    style={{ width: paused ? "100%" : undefined }}
+                  />
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onContinue();
+                  }}
+                  className="font-mono text-[10px] text-champagne/50 hover:text-champagne transition-colors cursor-pointer shrink-0 opacity-0 group-hover:opacity-100"
+                >
+                  continue ▸
+                </button>
               </div>
             </div>
           </div>
@@ -179,14 +188,23 @@ function StepCard({ step, index, isActive, progress }) {
 export default function Protocol() {
   const ref = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const pausedRef = useRef(false);
+  const [animKey, setAnimKey] = useState(0);
 
-  /* Auto-advance steps */
   useEffect(() => {
+    setAnimKey((k) => k + 1);
+  }, [activeStep]);
+
+  /* Auto-advance steps (loops back to 1 after reaching 5) */
+  useEffect(() => {
+    if (paused) return;
     const interval = setInterval(() => {
+      if (pausedRef.current) return;
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [paused, activeStep]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -239,7 +257,11 @@ export default function Protocol() {
           {steps.map((s, i) => (
             <button
               key={s.number}
-              onClick={() => setActiveStep(i)}
+              onClick={() => {
+                pausedRef.current = true;
+                setActiveStep(i);
+                setPaused(true);
+              }}
               className="flex items-center gap-1 group"
             >
               <div
@@ -252,7 +274,7 @@ export default function Protocol() {
               )}
             </button>
           ))}
-          <span className="ml-3 font-mono text-[10px] text-ivory/20">
+          <span className="ml-3 font-mono text-[10px] text-ivory/30">
             step {activeStep + 1}/{steps.length}
           </span>
         </div>
@@ -262,7 +284,11 @@ export default function Protocol() {
           {steps.map((step, i) => (
             <div
               key={step.number}
-              onClick={() => setActiveStep(i)}
+              onClick={() => {
+                pausedRef.current = true;
+                setActiveStep(i);
+                setPaused(true);
+              }}
               className="cursor-pointer"
             >
               <StepCard
@@ -270,6 +296,13 @@ export default function Protocol() {
                 index={i}
                 isActive={i === activeStep}
                 progress={activeStep}
+                paused={paused && i === activeStep}
+                animKey={animKey}
+                onContinue={() => {
+                  pausedRef.current = false;
+                  setActiveStep((prev) => (prev + 1) % steps.length);
+                  setPaused(false);
+                }}
               />
             </div>
           ))}
@@ -280,7 +313,7 @@ export default function Protocol() {
           className={`mt-6 font-mono text-[12px] transition-all duration-500 ${
             activeStep === steps.length - 1
               ? "text-champagne text-glow-subtle"
-              : "text-ivory/15"
+              : "text-ivory/25"
           }`}
         >
           {activeStep === steps.length - 1
@@ -291,4 +324,3 @@ export default function Protocol() {
     </section>
   );
 }
-

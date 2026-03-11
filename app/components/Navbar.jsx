@@ -21,7 +21,6 @@ export default function Navbar() {
   const links = [
     { label: "services", href: "#services" },
     { label: "process", href: "#process" },
-    { label: "output", href: "#output" },
     { label: "clients", href: "#clients" },
     { label: "contact", href: "#contact" },
   ];

@@ -99,7 +99,7 @@ export default function Philosophy() {
 
           {/* Content */}
           <div className="p-8 md:p-12 scan-line relative">
-            <div className="font-mono text-[13px] text-ivory/30 leading-relaxed mb-8">
+            <div className="font-mono text-[13px] text-ivory/40 leading-relaxed mb-8">
               <TypewriterLine
                 text="Other firms talk about agile. They plan sprints. They hold standups."
                 delay={200}
@@ -147,7 +147,7 @@ export default function Philosophy() {
                   <div className="font-mono text-[20px] md:text-[28px] font-bold text-champagne text-glow-subtle">
                     {stat.val}
                   </div>
-                  <div className="font-mono text-[10px] text-ivory/20 mt-1">
+                  <div className="font-mono text-[10px] text-ivory/30 mt-1">
                     {stat.label}
                   </div>
                 </div>
@@ -159,4 +159,3 @@ export default function Philosophy() {
     </section>
   );
 }
-
