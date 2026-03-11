@@ -1,30 +1,66 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+function Uptime() {
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      setSeconds(Math.floor((Date.now() - start) / 1000));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const pad = (n) => String(n).padStart(2, "0");
+  const h = pad(Math.floor(seconds / 3600));
+  const m = pad(Math.floor((seconds % 3600) / 60));
+  const s = pad(seconds % 60);
+
+  return (
+    <span>
+      {h}:{m}:{s}
+    </span>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="relative bg-slate-dark rounded-t-[4rem] pt-20 pb-10 px-6 md:px-16 lg:px-24">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+    <footer className="relative bg-slate-dark border-t border-champagne/10 overflow-hidden">
+      {/* Main footer */}
+      <div className="max-w-6xl mx-auto pt-14 pb-8 px-6 md:px-16 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold text-ivory mb-3">ZSoft</h3>
-            <p className="text-[14px] leading-relaxed text-ivory/50 max-w-sm">
+            <h3 className="font-mono text-lg font-bold text-champagne mb-3">
+              ~/z-soft<span className="cursor-blink">_</span>
+            </h3>
+            <p className="font-mono text-[12px] leading-relaxed text-ivory/40 max-w-sm">
               We build products that ship. From concept to production, trusted
               since 2020.
             </p>
+            {/* Ascii art mini */}
+            <div className="mt-4 font-mono text-[9px] text-champagne/15 leading-tight hidden md:block">
+              <pre className="leading-tight">{"┌──────────────────────┐\n│  Z - S O F T  v4.2.0 │\n└──────────────────────┘"}</pre>
+            </div>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne/50 mb-4">
-              Navigation
+            <h4 className="font-mono text-[11px] text-champagne/50 mb-4">
+              # navigation
             </h4>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {["Services", "Process", "Clients", "Contact"].map((link) => (
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}
-                  className="text-[14px] text-ivory/40 hover:text-champagne hover-lift transition-colors duration-300"
+                  className="font-mono text-[12px] text-ivory/30 hover:text-champagne transition-colors duration-300 group"
                 >
-                  {link}
+                  <span className="text-champagne/30 mr-1 group-hover:text-champagne transition-colors">
+                    $
+                  </span>
+                  cd ./{link.toLowerCase()}
                 </a>
               ))}
             </div>
@@ -32,47 +68,45 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne/50 mb-4">
-              Connect
+            <h4 className="font-mono text-[11px] text-champagne/50 mb-4">
+              # connect
             </h4>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <a
-                href="https://github.com/ZNackasha"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[14px] text-ivory/40 hover:text-champagne hover-lift transition-colors duration-300"
+                href="tel:5862229099"
+                className="font-mono text-[12px] text-ivory/30 hover:text-champagne transition-colors duration-300"
               >
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/ZNackasha"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[14px] text-ivory/40 hover:text-champagne hover-lift transition-colors duration-300"
-              >
-                LinkedIn
+                tel://586-222-9099
               </a>
               <a
                 href="mailto:info@z-soft.dev"
-                className="text-[14px] text-ivory/40 hover:text-champagne hover-lift transition-colors duration-300"
+                className="font-mono text-[12px] text-ivory/30 hover:text-champagne transition-colors duration-300"
               >
-                Email
+                mailto://info@z-soft.dev
               </a>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5">
-          <div className="flex items-center gap-3 mb-4 md:mb-0">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="font-mono text-[11px] tracking-wider text-ivory/30">
-              System Operational
+      {/* Terminal status bar */}
+      <div className="border-t border-champagne/5 bg-obsidian/50">
+        <div className="max-w-6xl mx-auto px-6 md:px-16 lg:px-24 py-3 flex flex-col md:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-4 font-mono text-[10px] text-ivory/20">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              all systems operational
             </span>
+            <span className="hidden md:inline">│</span>
+            <span className="hidden md:inline">
+              session: <Uptime />
+            </span>
+            <span className="hidden md:inline">│</span>
+            <span className="hidden md:inline">pid: 1</span>
           </div>
 
-          <p className="font-mono text-[11px] text-ivory/20">
-            &copy; 2020–2026 ZSoft. All rights reserved.
+          <p className="font-mono text-[10px] text-ivory/15">
+            &copy; 2020–{new Date().getFullYear()} Z-Soft — exit code: 0
           </p>
         </div>
       </div>

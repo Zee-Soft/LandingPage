@@ -11,7 +11,6 @@ import {
   Space_Mono,
   Sora,
   Instrument_Serif,
-  Fira_Code,
 } from "next/font/google";
 import "./globals.css";
 
@@ -97,19 +96,13 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const metadata = {
-  title: "ZSoft — Senior Engineers, On Demand",
+  title: "Z-Soft — Senior Engineers, On Demand",
   description:
-    "ZSoft embeds senior engineers directly into your team — shipping production code from week one. Technical contracting, done right.",
+    "Z-Soft embeds senior engineers directly into your team — shipping production code from week one. Technical contracting, done right.",
 };
 
-const fontVars = [
+const fontClasses = [
   inter,
   playfair,
   jetbrains,
@@ -122,7 +115,6 @@ const fontVars = [
   spaceMono,
   sora,
   instrumentSerif,
-  firaCode,
 ]
   .map((f) => f.variable)
   .join(" ");
@@ -130,7 +122,8 @@ const fontVars = [
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${fontVars} font-sans antialiased`}>{children}</body>
+      <head />
+      <body className={`${fontClasses} antialiased`}>{children}</body>
     </html>
   );
 }
