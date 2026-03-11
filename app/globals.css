@@ -9,14 +9,6 @@
   unicode-range: U+2500- U+259F;
 }
 
-@font-face {
-  font-family: "JBMono";
-  src: url("/JetBrainsMono-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --color-obsidian: #0d0d12;
   --color-champagne: #c9a84c;

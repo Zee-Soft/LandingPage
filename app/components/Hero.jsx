@@ -275,10 +275,7 @@ export default function Hero() {
           <div className="p-5 md:p-8 font-mono text-[10px] md:text-[12px] leading-relaxed">
             {/* ASCII Logo */}
             {logoLines > 0 && (
-              <pre
-                className="text-champagne text-glow-subtle leading-none text-[10px] md:text-[12px] mb-3"
-                style={{ fontFamily: "JBMono, monospace" }}
-              >
+              <pre className="text-champagne text-glow-subtle leading-none text-[10px] md:text-[12px] mb-3 tracking-[-0.05em]">
                 {asciiLogo.slice(0, logoLines).join("\n")}
               </pre>
             )}
