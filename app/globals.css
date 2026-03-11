@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "JetBrainsMono-Full";
+  font-family: "BoxChars";
+  src: url("/JetBrainsMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+2500- U+259F;
+}
+
+@font-face {
+  font-family: "JBMono";
   src: url("/JetBrainsMono-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
@@ -15,9 +24,9 @@
   --color-ivory: #e0e0e0;
   --color-slate-dark: #111111;
   --color-slate-mid: #1a1a1a;
-  --font-sans: monospace;
-  --font-display: monospace;
-  --font-mono: monospace;
+  --font-sans: "BoxChars", monospace;
+  --font-display: "BoxChars", monospace;
+  --font-mono: "BoxChars", monospace;
 }
 
 /* Scanline overlay */

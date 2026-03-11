@@ -277,7 +277,7 @@ export default function Hero() {
             {logoLines > 0 && (
               <pre
                 className="text-champagne text-glow-subtle leading-none text-[10px] md:text-[12px] mb-3"
-                style={{ fontFamily: '"JetBrainsMono-Full", monospace' }}
+                style={{ fontFamily: "JBMono, monospace" }}
               >
                 {asciiLogo.slice(0, logoLines).join("\n")}
               </pre>
