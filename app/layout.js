@@ -100,6 +100,19 @@ export const metadata = {
   title: "Z-Soft — Senior Engineers, On Demand",
   description:
     "Z-Soft embeds senior engineers directly into your team — shipping production code from week one. Technical contracting, done right.",
+  openGraph: {
+    title: "Z-Soft — Senior Engineers, On Demand",
+    description:
+      "Z-Soft embeds senior engineers directly into your team — shipping production code from week one.",
+    siteName: "Z-Soft",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Z-Soft — Senior Engineers, On Demand",
+    description:
+      "Z-Soft embeds senior engineers directly into your team — shipping production code from week one.",
+  },
 };
 
 const fontClasses = [
@@ -127,4 +140,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
