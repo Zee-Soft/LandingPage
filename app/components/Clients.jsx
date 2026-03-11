@@ -129,7 +129,7 @@ export default function Clients() {
             <span className="w-2 h-2 rounded-full bg-yellow-500/60" />
             <span className="w-2 h-2 rounded-full bg-green-500/60" />
             <span className="ml-2 font-mono text-[10px] text-ivory/30">
-              client-monitor — 6 engagements tracked
+              client-monitor — 14 engagements tracked
             </span>
             <span className="ml-auto font-mono text-[10px] text-ivory/15">
               F1:Help F10:Quit
@@ -177,6 +177,36 @@ export default function Clients() {
                 <StatusBadge value={client.status} />
               </button>
             ))}
+
+            {/* Redacted / NDA rows */}
+            {[1, 2, 3].map((i) => (
+              <div
+                key={`redacted-${i}`}
+                className="w-full grid grid-cols-[2fr_1fr_100px] md:grid-cols-[2fr_1.2fr_100px] gap-2 px-4 py-3 border-b border-ivory/[0.03] items-center select-none"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="h-4 w-12 bg-ivory/[0.04] rounded shrink-0 hidden sm:block" />
+                  <div
+                    className="h-3 rounded bg-ivory/[0.06]"
+                    style={{ width: `${60 + i * 15}px` }}
+                  />
+                </div>
+                <div className="hidden md:block">
+                  <div className="h-2.5 w-20 rounded bg-ivory/[0.04]" />
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ivory/10" />
+                  <span className="font-mono text-[10px] text-ivory/15 tracking-wider">
+                    NDA
+                  </span>
+                </div>
+              </div>
+            ))}
+
+            {/* More indicator */}
+            <div className="px-4 py-2 text-center font-mono text-[10px] text-ivory/15 border-b border-ivory/[0.03]">
+              + 5 additional engagements under NDA
+            </div>
           </div>
 
           {/* Detail panel */}
@@ -216,7 +246,7 @@ export default function Clients() {
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse" />
-                {clients.length} engagements
+                14 engagements
               </span>
             </div>
             <span>all systems nominal</span>
@@ -226,4 +256,3 @@ export default function Clients() {
     </section>
   );
 }
-
