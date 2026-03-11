@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-obsidian: #0a0a0a;
-  --color-champagne: #00ff41;
-  --color-champagne-light: #33ff66;
+  --color-obsidian: #0d0d12;
+  --color-champagne: #c9a84c;
+  --color-champagne-light: #d4b95e;
   --color-ivory: #e0e0e0;
   --color-slate-dark: #111111;
   --color-slate-mid: #1a1a1a;
@@ -24,8 +24,8 @@ body::before {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 255, 65, 0.08) 2px,
-    rgba(0, 255, 65, 0.08) 4px
+    rgba(201, 168, 76, 0.08) 2px,
+    rgba(201, 168, 76, 0.08) 4px
   );
 }
 
@@ -92,7 +92,7 @@ body {
   opacity: 0;
   background: radial-gradient(
     400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(0, 255, 65, 0.06) 0%,
+    rgba(201, 168, 76, 0.06) 0%,
     transparent 70%
   );
   transition: opacity 0.3s ease;
@@ -193,12 +193,12 @@ body {
 @keyframes glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 5px rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 5px rgba(201, 168, 76, 0.1);
   }
   50% {
     box-shadow:
-      0 0 25px rgba(0, 255, 65, 0.3),
-      0 0 50px rgba(0, 255, 65, 0.1);
+      0 0 25px rgba(201, 168, 76, 0.3),
+      0 0 50px rgba(201, 168, 76, 0.1);
   }
 }
 
@@ -209,22 +209,22 @@ body {
 /* Text shadow glow */
 .text-glow {
   text-shadow:
-    0 0 10px rgba(0, 255, 65, 0.5),
-    0 0 40px rgba(0, 255, 65, 0.2);
+    0 0 10px rgba(201, 168, 76, 0.5),
+    0 0 40px rgba(201, 168, 76, 0.2);
 }
 
 .text-glow-subtle {
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+  text-shadow: 0 0 8px rgba(201, 168, 76, 0.3);
 }
 
 /* Border glow animation */
 @keyframes border-glow {
   0%,
   100% {
-    border-color: rgba(0, 255, 65, 0.1);
+    border-color: rgba(201, 168, 76, 0.1);
   }
   50% {
-    border-color: rgba(0, 255, 65, 0.4);
+    border-color: rgba(201, 168, 76, 0.4);
   }
 }
 
@@ -247,7 +247,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(0, 255, 65, 0.15),
+    rgba(201, 168, 76, 0.15),
     transparent
   );
   animation: scan 4s ease-in-out infinite;
@@ -277,12 +277,12 @@ body {
   transition: all 0.2s ease;
 }
 .btn-magnetic:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
 }
 
 /* ASCII box border using box-shadow */
 .ascii-border {
-  border: 1px solid rgba(0, 255, 65, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   position: relative;
 }
 .ascii-border::before {
@@ -292,7 +292,7 @@ body {
   left: -1px;
   font-family: monospace;
   font-size: 10px;
-  color: rgba(0, 255, 65, 0.3);
+  color: rgba(201, 168, 76, 0.3);
   line-height: 1;
 }
 .ascii-border::after {
@@ -302,7 +302,6 @@ body {
   right: -1px;
   font-family: monospace;
   font-size: 10px;
-  color: rgba(0, 255, 65, 0.3);
+  color: rgba(201, 168, 76, 0.3);
   line-height: 1;
 }
-

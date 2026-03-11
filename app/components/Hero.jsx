@@ -28,7 +28,7 @@ function MatrixRain() {
     const draw = () => {
       ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "rgba(0, 255, 65, 0.15)";
+      ctx.fillStyle = "rgba(201, 168, 76, 0.15)";
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -266,7 +266,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal body */}
-          <div className="p-5 md:p-8 max-h-[340px] overflow-y-auto font-mono text-[10px] md:text-[12px] leading-relaxed">
+          <div className="p-5 md:p-8 font-mono text-[10px] md:text-[12px] leading-relaxed">
             {/* ASCII Logo */}
             {logoLines > 0 && (
               <pre className="text-champagne text-glow-subtle leading-none text-[10px] md:text-[12px] mb-3">
@@ -359,4 +359,3 @@ export default function Hero() {
     </section>
   );
 }
-
