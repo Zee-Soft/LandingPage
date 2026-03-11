@@ -158,7 +158,7 @@ export default function Clients() {
                 <div className="flex items-center gap-3 min-w-0">
                   <Image
                     src={client.logo}
-                    alt={client.name}
+                    alt={`${client.name} logo`}
                     width={80}
                     height={20}
                     className="h-4 w-auto opacity-30 shrink-0 hidden sm:block"

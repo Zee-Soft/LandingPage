@@ -245,6 +245,12 @@ export default function Hero() {
     >
       <MatrixRain />
 
+      {/* SEO: server-visible H1 for crawlers (hidden visually) */}
+      <h1 className="sr-only">
+        Z-Soft — Senior Engineers, On Demand. Production-grade software
+        development and technical contracting.
+      </h1>
+
       {/* Vignette overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/80 pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-r from-obsidian/50 via-transparent to-obsidian/50 pointer-events-none z-[1]" />
@@ -311,7 +317,7 @@ export default function Hero() {
         {/* Main content — appears after boot */}
         {showMain && (
           <div className="mt-10">
-            <h1 className="font-mono mb-6">
+            <div aria-hidden="true" className="font-mono mb-6">
               <span className="hero-title-1 block text-3xl md:text-5xl lg:text-6xl font-bold text-ivory leading-[1.1] tracking-tight">
                 Your product,
               </span>
@@ -319,7 +325,7 @@ export default function Hero() {
                 shipped.
                 <span className="cursor-blink">_</span>
               </span>
-            </h1>
+            </div>
 
             <p className="hero-desc font-mono text-[13px] md:text-[14px] leading-relaxed text-ivory/45 mb-10 max-w-xl">
               Stop burning runway on products that never launch. Z-Soft takes
