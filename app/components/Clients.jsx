@@ -219,9 +219,7 @@ export default function Clients() {
                 {clients.length} engagements
               </span>
             </div>
-            <span>
-              all systems nominal
-            </span>
+            <span>all systems nominal</span>
           </div>
         </div>
       </div>

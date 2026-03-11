@@ -19,7 +19,8 @@ function MatrixRain() {
     resize();
     window.addEventListener("resize", resize);
 
-    const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+    const chars =
+      "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
@@ -83,7 +84,8 @@ function StatusBar() {
         <span className="text-champagne/40">MEM</span> {mem}%
       </span>
       <span>
-        <span className="text-champagne/40">LOAD</span> 0.{Math.floor(Math.random() * 9) + 1}2
+        <span className="text-champagne/40">LOAD</span> 0.
+        {Math.floor(Math.random() * 9) + 1}2
       </span>
       <span className="flex items-center gap-1">
         <span className="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse" />
@@ -112,24 +114,60 @@ export default function Hero() {
   ];
 
   const bootSequence = useRef([
-    { text: "Z-SOFT SYSTEMS v4.2.0 — Engineering Solutions", cls: "text-ivory/50", delay: 400 },
-    { text: `Copyright (c) 2020-${new Date().getFullYear()} Z-Soft. All rights reserved.`, cls: "text-ivory/30", delay: 550 },
+    {
+      text: "Z-SOFT SYSTEMS v4.2.0 — Engineering Solutions",
+      cls: "text-ivory/50",
+      delay: 400,
+    },
+    {
+      text: `Copyright (c) 2020-${new Date().getFullYear()} Z-Soft. All rights reserved.`,
+      cls: "text-ivory/30",
+      delay: 550,
+    },
     { text: "", delay: 700 },
-    { text: "[ BOOT ] Initializing kernel modules............ [OK]", cls: "", delay: 800 },
-    { text: "[ BOOT ] Loading engineering protocols........... [OK]", cls: "", delay: 1000 },
-    { text: "[ BOOT ] Mounting /dev/clients................... [OK]", cls: "", delay: 1200 },
-    { text: "[ BOOT ] Starting process optimizer.............. [OK]", cls: "", delay: 1400 },
-    { text: "[ BOOT ] Verifying deployment pipelines.......... [OK]", cls: "", delay: 1600 },
-    { text: "[ BOOT ] Running security audit.................. [OK]", cls: "", delay: 1800 },
+    {
+      text: "[ BOOT ] Initializing kernel modules............ [OK]",
+      cls: "",
+      delay: 800,
+    },
+    {
+      text: "[ BOOT ] Loading engineering protocols........... [OK]",
+      cls: "",
+      delay: 1000,
+    },
+    {
+      text: "[ BOOT ] Mounting /dev/clients................... [OK]",
+      cls: "",
+      delay: 1200,
+    },
+    {
+      text: "[ BOOT ] Starting process optimizer.............. [OK]",
+      cls: "",
+      delay: 1400,
+    },
+    {
+      text: "[ BOOT ] Verifying deployment pipelines.......... [OK]",
+      cls: "",
+      delay: 1600,
+    },
+    {
+      text: "[ BOOT ] Running security audit.................. [OK]",
+      cls: "",
+      delay: 1800,
+    },
     { text: "", delay: 2000 },
-    { text: "All systems operational. Welcome to Z-Soft.", cls: "text-champagne font-bold", delay: 2100 },
+    {
+      text: "All systems operational. Welcome to Z-Soft.",
+      cls: "text-champagne font-bold",
+      delay: 2100,
+    },
     { text: "", delay: 2300 },
   ]).current;
 
   useEffect(() => {
     // Animate logo lines first
     const logoTimeouts = asciiLogo.map((_, i) =>
-      setTimeout(() => setLogoLines(i + 1), i * 60)
+      setTimeout(() => setLogoLines(i + 1), i * 60),
     );
 
     const timeouts = [];
@@ -166,11 +204,35 @@ export default function Hero() {
     if (!showMain) return;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.fromTo(".hero-title-1", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-        .fromTo(".hero-title-2", { y: 40, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 0.8 }, "-=0.3")
-        .fromTo(".hero-desc", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.3")
-        .fromTo(".hero-btn", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.12 }, "-=0.2")
-        .fromTo(".hero-status", { opacity: 0 }, { opacity: 1, duration: 0.8 }, "-=0.2");
+      tl.fromTo(
+        ".hero-title-1",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6 },
+      )
+        .fromTo(
+          ".hero-title-2",
+          { y: 40, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.8 },
+          "-=0.3",
+        )
+        .fromTo(
+          ".hero-desc",
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          "-=0.3",
+        )
+        .fromTo(
+          ".hero-btn",
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.12 },
+          "-=0.2",
+        )
+        .fromTo(
+          ".hero-status",
+          { opacity: 0 },
+          { opacity: 1, duration: 0.8 },
+          "-=0.2",
+        );
     }, ref);
     return () => ctx.revert();
   }, [showMain]);
@@ -220,8 +282,8 @@ export default function Hero() {
                       line.cls
                         ? line.cls
                         : line.text.includes("[OK]")
-                        ? "text-champagne/60"
-                        : "text-ivory/35"
+                          ? "text-champagne/60"
+                          : "text-ivory/35"
                     }
                   >
                     {line.text}

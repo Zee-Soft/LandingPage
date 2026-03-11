@@ -244,8 +244,7 @@ export default function Features() {
           $ ls ./deliverables/
         </div>
         <h2 className="font-mono text-2xl md:text-4xl font-bold text-ivory mb-12">
-          what{" "}
-          <span className="text-champagne text-glow-subtle">ships</span>
+          what <span className="text-champagne text-glow-subtle">ships</span>
           <span className="cursor-blink">_</span>
         </h2>
 

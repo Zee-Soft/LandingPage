@@ -41,7 +41,11 @@ export default function Footer() {
             </p>
             {/* Ascii art mini */}
             <div className="mt-4 font-mono text-[9px] text-champagne/15 leading-tight hidden md:block">
-              <pre className="leading-tight">{"┌──────────────────────┐\n│  Z - S O F T  v4.2.0 │\n└──────────────────────┘"}</pre>
+              <pre className="leading-tight">
+                {
+                  "┌──────────────────────┐\n│  Z - S O F T  v4.2.0 │\n└──────────────────────┘"
+                }
+              </pre>
             </div>
           </div>
 
