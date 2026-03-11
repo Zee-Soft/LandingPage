@@ -7,8 +7,8 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold text-ivory mb-3">ZSoft</h3>
             <p className="text-[14px] leading-relaxed text-ivory/50 max-w-sm">
-              We build products that ship. From concept to production,
-              trusted since 2020.
+              We build products that ship. From concept to production, trusted
+              since 2020.
             </p>
           </div>
 

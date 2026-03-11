@@ -3,10 +3,26 @@
 import { useState } from "react";
 
 const themes = [
-  { name: "Midnight Luxe", href: "/", colors: ["#0D0D12", "#C9A84C", "#FAF8F5"] },
-  { name: "Organic Tech", href: "/neon", colors: ["#1A1A1A", "#CC5833", "#F2F0E9"] },
-  { name: "Brutalist Signal", href: "/arctic", colors: ["#F5F3EE", "#E63B2E", "#111111"] },
-  { name: "Vapor Clinic", href: "/ember", colors: ["#0A0A14", "#7B61FF", "#F0EFF4"] },
+  {
+    name: "Midnight Luxe",
+    href: "/",
+    colors: ["#0D0D12", "#C9A84C", "#FAF8F5"],
+  },
+  {
+    name: "Organic Tech",
+    href: "/neon",
+    colors: ["#1A1A1A", "#CC5833", "#F2F0E9"],
+  },
+  {
+    name: "Brutalist Signal",
+    href: "/arctic",
+    colors: ["#F5F3EE", "#E63B2E", "#111111"],
+  },
+  {
+    name: "Vapor Clinic",
+    href: "/ember",
+    colors: ["#0A0A14", "#7B61FF", "#F0EFF4"],
+  },
 ];
 
 export default function ThemeSelector() {
@@ -43,11 +59,41 @@ export default function ThemeSelector() {
         className="ml-auto flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 hover:border-champagne/30 transition-all duration-300"
         aria-label="Switch theme"
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-champagne">
-          <circle cx="4" cy="4" r="2.5" stroke="currentColor" strokeWidth="1.2" />
-          <circle cx="12" cy="4" r="2.5" stroke="currentColor" strokeWidth="1.2" />
-          <circle cx="4" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.2" />
-          <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.2" />
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          className="text-champagne"
+        >
+          <circle
+            cx="4"
+            cy="4"
+            r="2.5"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+          <circle
+            cx="12"
+            cy="4"
+            r="2.5"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+          <circle
+            cx="4"
+            cy="12"
+            r="2.5"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="2.5"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
         </svg>
         <span className="text-[12px] font-mono tracking-wider text-ivory/60">
           Styles
@@ -56,3 +102,4 @@ export default function ThemeSelector() {
     </div>
   );
 }
+

@@ -110,16 +110,27 @@ export const metadata = {
 };
 
 const fontVars = [
-  inter, playfair, jetbrains, spaceGrotesk, lora, dmSerif,
-  jakarta, cormorant, ibmPlex, spaceMono, sora, instrumentSerif, firaCode,
-].map((f) => f.variable).join(" ");
+  inter,
+  playfair,
+  jetbrains,
+  spaceGrotesk,
+  lora,
+  dmSerif,
+  jakarta,
+  cormorant,
+  ibmPlex,
+  spaceMono,
+  sora,
+  instrumentSerif,
+  firaCode,
+]
+  .map((f) => f.variable)
+  .join(" ");
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${fontVars} font-sans antialiased`}>
-        {children}
-      </body>
+      <body className={`${fontVars} font-sans antialiased`}>{children}</body>
     </html>
   );
 }

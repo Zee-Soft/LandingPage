@@ -49,8 +49,8 @@ export default function Contact() {
 
         <p className="text-[16px] md:text-[18px] leading-relaxed text-ivory/50 max-w-xl mx-auto mb-12">
           Tell us what you&apos;re building, where you&apos;re stuck, and when
-          it needs to be live. We&apos;ll tell you exactly how we&apos;d
-          build it and when it ships.
+          it needs to be live. We&apos;ll tell you exactly how we&apos;d build
+          it and when it ships.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
