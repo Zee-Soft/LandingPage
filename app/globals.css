@@ -231,11 +231,15 @@ body {
 /* Scan line moving */
 @keyframes scan {
   0% {
-    top: -10%;
+    top: 5%;
   }
   100% {
-    top: 110%;
+    top: 100%;
   }
+}
+
+.scan-line {
+  overflow: hidden;
 }
 
 .scan-line::after {
@@ -250,7 +254,7 @@ body {
     rgba(201, 168, 76, 0.15),
     transparent
   );
-  animation: scan 4s ease-in-out infinite;
+  animation: scan 5s ease-in-out infinite;
   pointer-events: none;
 }
 
