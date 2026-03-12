@@ -304,9 +304,10 @@ const categories = [
 
 export default function Services() {
   const ref = useRef(null);
+  const detailRef = useRef(null);
   const [filter, setFilter] = useState("all");
   const [hoveredCmd, setHoveredCmd] = useState(null);
-  const [selectedCmd, setSelectedCmd] = useState(null);
+  const [selectedCmd, setSelectedCmd] = useState(services[0].cmd);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -410,41 +411,80 @@ export default function Services() {
               onMouseLeave={() => setHoveredCmd(null)}
             >
               {filtered.map((service, i) => (
-                <button
-                  key={service.cmd}
-                  onMouseEnter={() => setHoveredCmd(service.cmd)}
-                  onClick={() =>
-                    setSelectedCmd(
-                      selectedCmd === service.cmd ? null : service.cmd,
-                    )
-                  }
-                  className={`w-full text-left px-4 py-3 border-b border-champagne/[0.03] transition-all duration-150 group flex items-center gap-3 ${
-                    activeCmd === service.cmd
-                      ? "bg-champagne/5 border-l-2 border-l-champagne"
-                      : "hover:bg-slate-dark/40 border-l-2 border-l-transparent"
-                  }`}
-                >
-                  <span className="font-mono text-[10px] text-ivory/15 w-5">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={`font-mono text-[12px] font-bold transition-colors ${
+                <div key={service.cmd}>
+                  <button
+                    onMouseEnter={() => setHoveredCmd(service.cmd)}
+                    onClick={() =>
+                      setSelectedCmd(
+                        selectedCmd === service.cmd ? null : service.cmd,
+                      )
+                    }
+                    className={`w-full text-left px-4 py-3 border-b border-champagne/[0.03] transition-all duration-150 group flex items-center gap-3 ${
                       activeCmd === service.cmd
-                        ? "text-champagne"
-                        : "text-ivory/50 group-hover:text-ivory/70"
+                        ? "bg-champagne/5 border-l-2 border-l-champagne"
+                        : "hover:bg-slate-dark/40 border-l-2 border-l-transparent"
                     }`}
                   >
-                    {service.cmd}
-                  </span>
-                  <span className="ml-auto font-mono text-[9px] text-ivory/15 uppercase">
-                    {service.cat}
-                  </span>
-                </button>
+                    <span className="font-mono text-[10px] text-ivory/15 w-5">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`font-mono text-[12px] font-bold transition-colors ${
+                        activeCmd === service.cmd
+                          ? "text-champagne"
+                          : "text-ivory/50 group-hover:text-ivory/70"
+                      }`}
+                    >
+                      {service.cmd}
+                    </span>
+                    <span className="ml-auto font-mono text-[9px] text-ivory/15 uppercase">
+                      {service.cat}
+                    </span>
+                  </button>
+
+                  {/* Inline mobile accordion detail */}
+                  {selectedCmd === service.cmd && (
+                    <div className="lg:hidden border-b border-champagne/10 bg-slate-dark/10 p-5">
+                      <div className="font-mono text-[10px] text-ivory/25 mb-3">
+                        NAME
+                      </div>
+                      <div className="font-mono text-[10px] text-ivory/40 mb-1 pl-4">
+                        z-soft-{service.cmd} — {service.title}
+                      </div>
+                      <div className="font-mono text-[10px] text-ivory/25 mt-4 mb-2">
+                        SYNOPSIS
+                      </div>
+                      <div className="font-mono text-[12px] text-champagne pl-4 mb-4">
+                        $ z-soft {service.cmd}{" "}
+                        <span className="text-ivory/30">
+                          [--scope=&lt;target&gt;]
+                        </span>
+                      </div>
+                      <div className="font-mono text-[10px] text-ivory/25 mb-2">
+                        DESCRIPTION
+                      </div>
+                      <p className="font-mono text-[12px] leading-relaxed text-ivory/40 pl-4">
+                        {service.description}
+                      </p>
+                      <div className="mt-6 pt-3 border-t border-ivory/5 flex items-center gap-3">
+                        <span className="px-2 py-0.5 font-mono text-[9px] border border-champagne/20 text-champagne/50">
+                          {service.cat}
+                        </span>
+                        <span className="font-mono text-[9px] text-ivory/15">
+                          v2.0 — Z-SOFT Services Manual
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
-            {/* Right: detail pane */}
-            <div className="p-6 md:p-8 bg-slate-dark/10 scan-line relative flex flex-col justify-center min-h-[420px]">
+            {/* Right: detail pane (desktop only) */}
+            <div
+              ref={detailRef}
+              className="hidden lg:flex p-6 md:p-8 bg-slate-dark/10 scan-line relative flex-col justify-center min-h-[420px]"
+            >
               {active ? (
                 <div>
                   <div className="font-mono text-[10px] text-ivory/25 mb-5">

@@ -77,7 +77,16 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setMobileOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileOpen(false);
+                const el = document.querySelector(link.href);
+                if (el) {
+                  const y =
+                    el.getBoundingClientRect().top + window.scrollY - 80;
+                  window.scrollTo({ top: y, behavior: "smooth" });
+                }
+              }}
               className="block font-mono text-[13px] text-ivory/50 hover:text-champagne py-2 transition-colors"
             >
               <span className="text-champagne/50">$ cd </span>

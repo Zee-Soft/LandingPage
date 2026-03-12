@@ -126,7 +126,7 @@ export default function Hero() {
     },
     { text: "", delay: 700 },
     {
-      text: "[ BOOT ] Initializing kernel modules............ [OK]",
+      text: "[ BOOT ] Initializing kernel modules............. [OK]",
       cls: "",
       delay: 800,
     },
