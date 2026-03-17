@@ -13,6 +13,7 @@ import {
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -172,7 +173,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head />
-      <body className={`${fontClasses} antialiased`}>{children}</body>
+      <body className={`${fontClasses} antialiased`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
