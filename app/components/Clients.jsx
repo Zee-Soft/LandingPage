@@ -7,8 +7,9 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const clients = [
+const allClients = [
   {
+    id: "myfundedfutures",
     name: "MyFundedFutures",
     industry: "Quantitative Trading",
     status: "SHIPPED",
@@ -17,6 +18,7 @@ const clients = [
     logo: "/logos/mff.png",
   },
   {
+    id: "benzinga",
     name: "Benzinga",
     industry: "Financial Media",
     status: "SHIPPED",
@@ -25,6 +27,7 @@ const clients = [
     logo: "/logos/benzinga.png",
   },
   {
+    id: "intrepid",
     name: "Intrepid Control Systems",
     industry: "Automotive",
     status: "SHIPPED",
@@ -33,6 +36,7 @@ const clients = [
     logo: "/logos/intrepid.png",
   },
   {
+    id: "gm",
     name: "General Motors",
     industry: "AI & Predictive Analytics",
     status: "DEPLOYED",
@@ -41,6 +45,7 @@ const clients = [
     logo: "/logos/gm.png",
   },
   {
+    id: "keyboard",
     name: "Keyboard.gg",
     industry: "Hardware / Firmware",
     status: "SHIPPED",
@@ -49,6 +54,7 @@ const clients = [
     logo: "/logos/keyboard.png",
   },
   {
+    id: "nissan",
     name: "Nissan",
     industry: "Automotive",
     status: "DEPLOYED",
@@ -57,6 +63,16 @@ const clients = [
     logo: "/logos/nissan.jpg",
   },
 ];
+
+// Filter clients by NEXT_PUBLIC_ENABLED_CLIENTS env var (comma-separated ids).
+// If not set, all clients are shown.
+const enabledIds = process.env.NEXT_PUBLIC_ENABLED_CLIENTS;
+const enabledIdsList = enabledIds
+  ? enabledIds.split(",").map((s) => s.trim())
+  : null;
+const clients = enabledIds
+  ? allClients.filter((c) => enabledIdsList.includes(c.id))
+  : allClients;
 
 function StatusBadge({ value }) {
   return (

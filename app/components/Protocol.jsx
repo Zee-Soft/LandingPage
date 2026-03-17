@@ -85,10 +85,10 @@ function StepCard({
 }) {
   return (
     <div
-      className={`protocol-step group relative transition-all duration-500 ${isActive ? "z-10" : ""}`}
+      className={`protocol-step group relative transition-all duration-300 ${isActive ? "z-10" : ""}`}
     >
       <div
-        className={`border transition-all duration-500 ${
+        className={`border transition-all duration-300 ${
           isActive
             ? "border-champagne/30 bg-champagne/[0.03]"
             : "border-ivory/5 bg-slate-dark/20"
@@ -103,7 +103,7 @@ function StepCard({
           }`}
         >
           <span
-            className={`font-mono text-[20px] font-bold transition-colors duration-300 ${
+            className={`font-mono text-[20px] font-bold transition-colors duration-200 ${
               isActive ? "text-champagne text-glow-subtle" : "text-ivory/20"
             }`}
           >
@@ -114,7 +114,7 @@ function StepCard({
               $ make {step.cmd}
             </div>
             <h3
-              className={`font-mono text-[14px] font-bold transition-colors duration-300 ${
+              className={`font-mono text-[14px] font-bold transition-colors duration-200 ${
                 isActive ? "text-ivory" : "text-ivory/40"
               }`}
             >
@@ -122,7 +122,7 @@ function StepCard({
             </h3>
           </div>
           <span
-            className={`font-mono text-[10px] shrink-0 px-2 py-0.5 border transition-all duration-300 ${
+            className={`font-mono text-[10px] shrink-0 px-2 py-0.5 border transition-all duration-200 ${
               isActive
                 ? "border-champagne/30 text-champagne"
                 : progress > index
@@ -136,46 +136,50 @@ function StepCard({
 
         {/* Expandable content */}
         <div
-          className={`overflow-hidden transition-all duration-500 ${
-            isActive ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+            isActive
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0"
           }`}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="p-5 border-b md:border-b-0 md:border-r border-ivory/5">
-              <p className="font-mono text-[11px] leading-relaxed text-ivory/50">
-                {step.description}
-              </p>
-            </div>
-            <div className="p-5 bg-slate-dark/20 font-mono text-[10px]">
-              <div className="text-ivory/25 mb-2">OUTPUT:</div>
-              {step.output.map((line, i) => (
-                <div
-                  key={i}
-                  className={`leading-5 ${
-                    line.startsWith("✓") ? "text-champagne" : "text-ivory/35"
-                  }`}
-                >
-                  {line}
-                </div>
-              ))}
-              {/* Progress bar */}
-              <div className="flex items-center gap-3 mt-3">
-                <div className="flex-1 h-1 bg-ivory/5 overflow-hidden">
+          <div className="overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="p-5 border-b md:border-b-0 md:border-r border-ivory/5">
+                <p className="font-mono text-[11px] leading-relaxed text-ivory/50">
+                  {step.description}
+                </p>
+              </div>
+              <div className="p-5 bg-slate-dark/20 font-mono text-[10px]">
+                <div className="text-ivory/25 mb-2">OUTPUT:</div>
+                {step.output.map((line, i) => (
                   <div
-                    key={animKey}
-                    className={`h-full bg-champagne/60 ${paused ? "" : "animate-[progress-fill_4s_ease-in-out_forwards]"}`}
-                    style={{ width: paused ? "100%" : undefined }}
-                  />
+                    key={i}
+                    className={`leading-5 ${
+                      line.startsWith("✓") ? "text-champagne" : "text-ivory/35"
+                    }`}
+                  >
+                    {line}
+                  </div>
+                ))}
+                {/* Progress bar */}
+                <div className="flex items-center gap-3 mt-3">
+                  <div className="flex-1 h-1 bg-ivory/5 overflow-hidden">
+                    <div
+                      key={animKey}
+                      className={`h-full bg-champagne/60 ${paused ? "" : "animate-[progress-fill_3s_ease-in-out_forwards]"}`}
+                      style={{ width: paused ? "100%" : undefined }}
+                    />
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onContinue();
+                    }}
+                    className="font-mono text-[10px] text-champagne/50 hover:text-champagne transition-colors cursor-pointer shrink-0 opacity-0 group-hover:opacity-100"
+                  >
+                    continue ▸
+                  </button>
                 </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onContinue();
-                  }}
-                  className="font-mono text-[10px] text-champagne/50 hover:text-champagne transition-colors cursor-pointer shrink-0 opacity-0 group-hover:opacity-100"
-                >
-                  continue ▸
-                </button>
               </div>
             </div>
           </div>
@@ -202,7 +206,7 @@ export default function Protocol() {
     const interval = setInterval(() => {
       if (pausedRef.current) return;
       setActiveStep((prev) => (prev + 1) % steps.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [paused, activeStep]);
 
@@ -265,7 +269,7 @@ export default function Protocol() {
               className="flex items-center gap-1 group"
             >
               <div
-                className={`w-8 h-1 transition-all duration-500 ${
+                className={`w-8 h-1 transition-all duration-300 ${
                   i <= activeStep ? "bg-champagne/60" : "bg-ivory/10"
                 }`}
               />

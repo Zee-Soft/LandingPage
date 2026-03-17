@@ -97,126 +97,8 @@ function StatusBar() {
 
 export default function Hero() {
   const ref = useRef(null);
-  const [bootLines, setBootLines] = useState([]);
-  const [showMain, setShowMain] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  const [typedCmd, setTypedCmd] = useState("");
-  const [logoLines, setLogoLines] = useState(0);
-  const cmdText = "cat /etc/motd";
-
-  const asciiLogo = [
-    "███████╗    ███████╗ ██████╗ ███████╗████████╗",
-    "╚══███╔╝    ██╔════╝██╔═══██╗██╔════╝╚══██╔══╝",
-    "  ███╔╝ ─── ███████╗██║   ██║█████╗     ██║   ",
-    " ███╔╝      ╚════██║██║   ██║██╔══╝     ██║   ",
-    "███████╗    ███████║╚██████╔╝██║        ██║   ",
-    "╚══════╝    ╚══════╝ ╚═════╝ ╚═╝        ╚═╝   ",
-  ];
-
-  const bootSequence = useRef([
-    {
-      text: "Z-SOFT SYSTEMS v4.2.0 — Software Engineering, On Demand",
-      cls: "text-ivory/50",
-      delay: 400,
-    },
-    {
-      text: `Copyright (c) 2020-${new Date().getFullYear()} Z-Soft. All rights reserved.`,
-      cls: "text-ivory/30",
-      delay: 550,
-    },
-    { text: "", delay: 700 },
-    {
-      text: "[ BOOT ] Initializing kernel modules............. [OK]",
-      cls: "",
-      delay: 800,
-    },
-    {
-      text: "[ BOOT ] Loading engineering protocols........... [OK]",
-      cls: "",
-      delay: 1000,
-    },
-    {
-      text: "[ BOOT ] Mounting /dev/clients................... [OK]",
-      cls: "",
-      delay: 1200,
-    },
-    {
-      text: "[ BOOT ] Starting process optimizer.............. [OK]",
-      cls: "",
-      delay: 1400,
-    },
-    {
-      text: "[ BOOT ] Verifying deployment pipelines.......... [OK]",
-      cls: "",
-      delay: 1600,
-    },
-    {
-      text: "[ BOOT ] Running security audit.................. [OK]",
-      cls: "",
-      delay: 1800,
-    },
-    { text: "", delay: 2000 },
-    {
-      text: "All systems operational. Ready to build.",
-      cls: "text-champagne font-bold",
-      delay: 2100,
-    },
-    { text: "", delay: 2300 },
-  ]).current;
-
-  const timeoutsRef = useRef([]);
-  const logoTimeoutsRef = useRef([]);
-
-  const skipBoot = () => {
-    logoTimeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current.forEach(clearTimeout);
-    setLogoLines(asciiLogo.length);
-    setBootLines(bootSequence.map((l) => l));
-    setTypedCmd(cmdText);
-    setShowCursor(false);
-    setShowMain(true);
-  };
 
   useEffect(() => {
-    // Animate logo lines first
-    const logoTimeouts = asciiLogo.map((_, i) =>
-      setTimeout(() => setLogoLines(i + 1), i * 60),
-    );
-    logoTimeoutsRef.current = logoTimeouts;
-
-    const timeouts = [];
-    bootSequence.forEach((line, i) => {
-      const t = setTimeout(() => {
-        setBootLines((prev) => [...prev, line]);
-        if (i === bootSequence.length - 1) {
-          setTimeout(() => {
-            let idx = 0;
-            const typeInterval = setInterval(() => {
-              if (idx <= cmdText.length) {
-                setTypedCmd(cmdText.slice(0, idx));
-                idx++;
-              } else {
-                clearInterval(typeInterval);
-                setTimeout(() => {
-                  setShowCursor(false);
-                  setShowMain(true);
-                }, 400);
-              }
-            }, 60);
-          }, 300);
-        }
-      }, line.delay);
-      timeouts.push(t);
-    });
-    timeoutsRef.current = timeouts;
-    return () => {
-      logoTimeouts.forEach(clearTimeout);
-      timeouts.forEach(clearTimeout);
-    };
-  }, [bootSequence]);
-
-  useEffect(() => {
-    if (!showMain) return;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.fromTo(
@@ -250,7 +132,7 @@ export default function Hero() {
         );
     }, ref);
     return () => ctx.revert();
-  }, [showMain]);
+  }, []);
 
   return (
     <section
@@ -271,123 +153,49 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-obsidian/50 via-transparent to-obsidian/50 pointer-events-none z-[1]" />
 
       <div className="relative z-10 max-w-6xl mx-auto w-full">
-        {/* Terminal window chrome */}
-        <div className="border border-champagne/15 bg-obsidian/90 backdrop-blur-sm scan-line">
-          {/* Title bar */}
-          <div className="flex items-center gap-2 px-4 py-2 border-b border-champagne/10 bg-slate-dark/50">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-            <span className="ml-3 font-mono text-[10px] text-ivory/25">
-              z-soft@main:~
-            </span>
-            <span className="ml-auto font-mono text-[10px] text-ivory/15">
-              bash
-            </span>
-            {!showMain && (
-              <button
-                onClick={skipBoot}
-                className="ml-3 font-mono text-[10px] text-champagne/40 hover:text-champagne/80 transition-colors cursor-pointer"
-              >
-                skip ▸
-              </button>
-            )}
-          </div>
-
-          {/* Terminal body */}
-          <div className="p-5 md:p-8 font-mono text-[10px] md:text-[12px] leading-relaxed">
-            {/* ASCII Logo */}
-            {logoLines > 0 && (
-              <pre className="text-champagne text-glow-subtle leading-none text-[10px] md:text-[12px] mb-3 tracking-[-0.05em]">
-                {asciiLogo.slice(0, logoLines).join("\n")}
-              </pre>
-            )}
-
-            {bootLines.map((line, i) => (
-              <div key={i} className={line.text === "" ? "h-3" : ""}>
-                {line.text && (
-                  <span
-                    className={
-                      line.cls
-                        ? line.cls
-                        : line.text.includes("[OK]")
-                          ? "text-champagne/60"
-                          : "text-ivory/35"
-                    }
-                  >
-                    {line.text}
-                  </span>
-                )}
-              </div>
-            ))}
-
-            {/* Typing command line */}
-            {bootLines.length >= bootSequence.length && (
-              <div className="text-ivory/60">
-                <span className="text-champagne/60">z-soft@main</span>
-                <span className="text-ivory/30">:</span>
-                <span className="text-blue-400/60">~</span>
-                <span className="text-ivory/30">$ </span>
-                <span className="text-ivory/70">{typedCmd}</span>
-                {showCursor && (
-                  <span className="cursor-blink inline-block w-[7px] h-[14px] bg-champagne ml-[1px] translate-y-[2px]" />
-                )}
-              </div>
-            )}
-          </div>
+        <div aria-hidden="true" className="font-mono mb-4">
+          <span className="hero-title-1 block text-3xl md:text-5xl lg:text-6xl font-bold text-ivory leading-[1.1] tracking-tight">
+            Senior Engineers,
+          </span>
+          <span className="hero-title-2 block text-4xl md:text-6xl lg:text-7xl font-bold text-champagne text-glow leading-[1.1] tracking-tight mt-2">
+            On Demand.
+            <span className="cursor-blink">_</span>
+          </span>
         </div>
 
-        {/* Main content — appears after boot */}
-        {showMain && (
-          <div className="mt-10">
-            <div aria-hidden="true" className="font-mono mb-4">
-              <span className="hero-title-1 block text-3xl md:text-5xl lg:text-6xl font-bold text-ivory leading-[1.1] tracking-tight">
-                Senior Engineers,
-              </span>
-              <span className="hero-title-2 block text-4xl md:text-6xl lg:text-7xl font-bold text-champagne text-glow leading-[1.1] tracking-tight mt-2">
-                On Demand.
-                <span className="cursor-blink">_</span>
-              </span>
-            </div>
+        <p className="hero-desc font-mono text-[14px] md:text-[16px] leading-relaxed text-ivory/60 mb-3 max-w-xl">
+          We embed into your team and ship production software — from week one.
+        </p>
+        <p className="hero-desc font-mono text-[12px] md:text-[13px] leading-relaxed text-ivory/45 mb-10 max-w-xl">
+          Full-stack, infrastructure, firmware, trading systems — whatever you
+          need built, we build it.
+        </p>
 
-            <p className="hero-desc font-mono text-[14px] md:text-[16px] leading-relaxed text-ivory/60 mb-3 max-w-xl">
-              We embed into your team and ship production software — from week
-              one.
-            </p>
-            <p className="hero-desc font-mono text-[12px] md:text-[13px] leading-relaxed text-ivory/45 mb-10 max-w-xl">
-              Full-stack, infrastructure, firmware, trading systems — whatever
-              you need built, we build it.
-            </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href="#contact"
+            className="hero-btn glow-pulse inline-flex items-center gap-2 px-6 py-3 font-mono text-[13px] font-bold bg-champagne text-obsidian hover:bg-champagne-light transition-colors duration-200"
+          >
+            Start a Project
+          </a>
+          <a
+            href="#services"
+            className="hero-btn inline-flex items-center gap-2 px-6 py-3 font-mono text-[13px] border border-champagne/25 text-champagne/70 hover:border-champagne/60 hover:text-champagne transition-all duration-200"
+          >
+            See What We Do
+          </a>
+        </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#contact"
-                className="hero-btn glow-pulse inline-flex items-center gap-2 px-6 py-3 font-mono text-[13px] font-bold bg-champagne text-obsidian hover:bg-champagne-light transition-colors duration-200"
-              >
-                Start a Project
-              </a>
-              <a
-                href="#services"
-                className="hero-btn inline-flex items-center gap-2 px-6 py-3 font-mono text-[13px] border border-champagne/25 text-champagne/70 hover:border-champagne/60 hover:text-champagne transition-all duration-200"
-              >
-                See What We Do
-              </a>
-            </div>
-
-            <div className="hero-status">
-              <StatusBar />
-            </div>
-          </div>
-        )}
+        <div className="hero-status">
+          <StatusBar />
+        </div>
       </div>
 
       {/* Scroll indicator */}
-      {showMain && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-ivory/15 text-center z-10">
-          <span className="text-champagne/30 block animate-bounce">▼</span>
-          scroll
-        </div>
-      )}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-ivory/15 text-center z-10">
+        <span className="text-champagne/30 block animate-bounce">▼</span>
+        scroll
+      </div>
     </section>
   );
 }
